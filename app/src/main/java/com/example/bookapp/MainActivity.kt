@@ -1,8 +1,10 @@
 package com.example.bookapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bookapp.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,11 +15,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.loginBtn.setOnClickListener{
-
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         binding.skipBtn.setOnClickListener{
-
+            startActivity(Intent(this, DashboardUserActivity::class.java))
         }
     }
 }
