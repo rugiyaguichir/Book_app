@@ -67,6 +67,7 @@ class CategoryAddActivity : AppCompatActivity() {
         ref.child("$timestamp")
             .setValue(hashMap)
             .addOnSuccessListener {
+                progressDialog.dismiss()
                 Toast.makeText(this, "Added successfully...", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener{e->
