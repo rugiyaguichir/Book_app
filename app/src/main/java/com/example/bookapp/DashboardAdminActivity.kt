@@ -35,7 +35,6 @@ class DashboardAdminActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
-
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 try{
                     adapterCategory.filter.filter(s)

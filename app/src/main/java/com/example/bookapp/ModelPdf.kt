@@ -10,8 +10,9 @@ class ModelPdf {
     var url:String = ""
     var timestamp:Long = 0
     var viewsCount:Long = 0
-    var downloadsCount:Long = 0
+    private var downloadsCount:Long = 0
 
+    constructor()
     constructor(
         uid: String,
         id: String,
@@ -33,4 +34,6 @@ class ModelPdf {
         this.viewsCount = viewsCount
         this.downloadsCount = downloadsCount
     }
+
+
 }
