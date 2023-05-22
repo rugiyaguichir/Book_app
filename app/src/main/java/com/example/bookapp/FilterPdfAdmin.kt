@@ -14,13 +14,13 @@ class FilterPdfAdmin: Filter {
     }
 
     override fun performFiltering(constraint: CharSequence?): FilterResults {
-        var constraint: CharSequence? = constraint
+        var constraint = constraint
         val results = FilterResults()
 
         if(constraint != null && constraint.isNotEmpty()){
             constraint = constraint.toString().lowercase()
-            var filteredModels = ArrayList<ModelPdf>()
-            for (i in filterList.indices){
+            val filteredModels: ArrayList<ModelPdf> = ArrayList()
+            for (i in 0 until  filterList.size){
 
                 if(filterList[i].title.lowercase().contains(constraint)){
                     filteredModels.add(filterList[i])
@@ -37,7 +37,7 @@ class FilterPdfAdmin: Filter {
         return results
     }
 
-    override fun publishResults(constraint: CharSequence, results: FilterResults) {
+    override fun publishResults(constraint: CharSequence?, results: FilterResults) {
         adapterPdfAdmin.pdfArrayList = results.values as ArrayList<ModelPdf>
 
         adapterPdfAdmin.notifyDataSetChanged()

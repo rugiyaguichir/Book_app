@@ -58,6 +58,8 @@ class PdfListAdminActivity : AppCompatActivity() {
 
             }
         })
+
+
         binding.backBtn.setOnClickListener{
             onBackPressed()
         }
@@ -79,6 +81,7 @@ class PdfListAdminActivity : AppCompatActivity() {
                         pdfArrayList.add(model)
                         Log.d(TAG, "OnDataChange: ${model.title} ${model.categoryId}")
                     }
+
 
 
                 }

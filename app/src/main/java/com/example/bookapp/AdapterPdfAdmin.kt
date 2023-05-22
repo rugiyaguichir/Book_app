@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookapp.databinding.RowPdfAdminBinding
 
@@ -59,6 +61,12 @@ class AdapterPdfAdmin: RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fil
         holder.moreBtn.setOnClickListener{
             moreOptionsDialog(model, holder)
         }
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, PdfDetailActivity::class.java)
+            intent.putExtra("bookId", pdfId)
+            context.startActivity(intent)
+        }
     }
 
     private fun moreOptionsDialog(model: ModelPdf, holder: AdapterPdfAdmin.HolderPdfAdmin) {
@@ -75,7 +83,7 @@ class AdapterPdfAdmin: RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fil
                     context.startActivity(intent)
                 }
                 else if(position == 1){
-
+                    MyApplication.deleteBook(context, bookId, bookUrl, bookTitle)
                 }
             }
             .show()
@@ -98,10 +106,10 @@ class AdapterPdfAdmin: RecyclerView.Adapter<AdapterPdfAdmin.HolderPdfAdmin>, Fil
         val progressBar = binding.progressBar
         val titleTv = binding.titleTv
         val descriptionTv = binding.descriptionTv
-        val categoryTv = binding.categoryTv
+        val categoryTv:TextView = binding.categoryTv
         val sizeTv = binding.sizeTv
         val dateTv = binding.dateTv
-        val moreBtn = binding.moreBtn
+        val moreBtn:ImageButton = binding.moreBtn
     }
 
 }

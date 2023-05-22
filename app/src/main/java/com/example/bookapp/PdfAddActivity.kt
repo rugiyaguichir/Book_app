@@ -139,9 +139,9 @@ class PdfAddActivity : AppCompatActivity() {
         hashMap["description"] = "$description"
         hashMap["categoryId"] = "$selectedCategoryId"
         hashMap["url"] = "$uploadedPdfUrl"
-        hashMap["timestamp"] = "$timestamp"
-        hashMap["viesCount"] = 0
-        hashMap["downloadedCount"] = 0
+        hashMap["timestamp"] = timestamp
+        hashMap["viewsCount"] = 0
+        hashMap["downloadsCount"] = 0
 
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.child("$timestamp")
