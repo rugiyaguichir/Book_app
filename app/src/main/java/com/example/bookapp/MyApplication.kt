@@ -59,8 +59,14 @@ class MyApplication:Application() {
                 }
         }
 
-        fun loadPdfFromUrlSinglePage(pdfUrl: String, pdfTitle: String, pdfView: PDFView, progressBar: ProgressBar, pagesTv: TextView?){
-            val TAG = "PDF_THUMBNNAIL_TAG"
+        fun loadPdfFromUrlSinglePage(
+            pdfUrl: String,
+            pdfTitle: String,
+            pdfView: PDFView,
+            progressBar: ProgressBar,
+            pagesTv: TextView?
+        ) {
+            val TAG = "PDF_THUMBNAIL_TAG"
             val ref = FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl)
             ref.getBytes(Constants.MAX_BYTES_PDF)
                 .addOnSuccessListener { bytes ->
@@ -71,25 +77,25 @@ class MyApplication:Application() {
                         .spacing(0)
                         .swipeHorizontal(false)
                         .enableSwipe(false)
-                        .onError{t->
+                        .onError { t ->
                             progressBar.visibility = View.INVISIBLE
                             Log.d(TAG, "loadPdfFromUrlSinglePage: ${t.message}")
                         }
-                        .onPageError{page, t->
+                        .onPageError { page, t ->
                             progressBar.visibility = View.INVISIBLE
                             Log.d(TAG, "loadPdfFromUrlSinglePage: ${t.message}")
                         }
-                        .onLoad{nbPages->
+                        .onLoad { nbPages ->
                             Log.d(TAG, "loadPdfFromUrlSinglePage: Pages: $nbPages")
                             progressBar.visibility = View.INVISIBLE
 
-                            if(pagesTv != null){
+                            if (pagesTv != null) {
                                 pagesTv.text = "$nbPages"
                             }
                         }
                         .load()
                 }
-                .addOnFailureListener{e->
+                .addOnFailureListener { e ->
                     Log.d(TAG, "loadPdfSize: Failed to get metadata due to ${e.message}")
                 }
         }
