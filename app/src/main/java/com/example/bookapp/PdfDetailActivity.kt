@@ -3,12 +3,12 @@ package com.example.bookapp
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.bookapp.databinding.ActivityPdfDetailBinding
 import com.google.firebase.database.DataSnapshot
@@ -170,21 +170,26 @@ class PdfDetailActivity : AppCompatActivity() {
                     val downloadsCount = "${snapshot.child(" downloadsCount ").value}"
                     val timestamp = "${snapshot.child(" timestamp ").value}"
                     val uid = "${snapshot.child(" uid ").value}"
-                    bookTitle = "${snapshot.child(" title ").value}"
-                    bookUrl = "${snapshot.child(" url ").value}"
+                    val title = "${snapshot.child(" title ").value}"
+                    val url = "${snapshot.child(" url ").value}"
                     val viewsCount = "${snapshot.child(" viewsCount ").value}"
+                    var date:String = "null"
 
-                    val date = MyApplication.formatTimestamp(timestamp.toLong())
-
-
+                    if (timestamp != null && timestamp.isNotEmpty()) {
+                        try {
+                            val date = MyApplication.formatTimestamp(timestamp.toLong())
+                        } catch (e: NumberFormatException) {
+                            e.printStackTrace()
+                        }
+                    }
 
                     MyApplication.loadCategory(categoryId, binding.categoryTv)
 
-                    MyApplication.loadPdfFromUrlSinglePage("$bookUrl", "$bookTitle", binding.pdfView, binding.progressBar, binding.pagesTv)
+                    MyApplication.loadPdfFromUrlSinglePage(url, title, binding.pdfView, binding.progressBar, binding.pagesTv)
 
-                    MyApplication.loadPdfSize("$bookUrl", "$bookTitle", binding.sizeTv)
+                    MyApplication.loadPdfSize(url, title, binding.sizeTv)
 
-                    binding.titleTv.text = bookTitle
+                    binding.titleTv.text = title
                     binding.descriptionTv.text = description
                     binding.viewsTv.text = viewsCount
                     binding.downloadsTv.text = downloadsCount

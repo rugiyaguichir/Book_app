@@ -24,10 +24,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Book Details"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/montserrat"
+            android:text="Book Details"
             android:textColor="@color/white"
-            android:fontFamily="@font/montserrat_bold"/>
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 
@@ -80,7 +81,7 @@
                     android:layout_below="@id/titleTv"
                     android:layout_toEndOf="@id/pdfRl">
 
-                        <TableRow>
+                    <TableRow>
 
                             <TextView
                                 android:id="@+id/categoryLabelTv"
@@ -101,7 +102,7 @@
                                 android:fontFamily="@font/montserrat"
                                 android:layout_marginEnd="5dp"/>
 
-                        </TableRow>
+                    </TableRow>
 
                     <TableRow
                         android:layout_marginTop="5dp">
@@ -220,10 +221,7 @@
 
                     </TableRow>
 
-
-
                 </TableLayout>
-
 
             </RelativeLayout>
 
